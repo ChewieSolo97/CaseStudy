@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">CaseStudy</string>
+    <string name="app_name">NASCAR Stats</string>
+    <!--find a better way to change the size of these later-->
+    <string name="add_driver"><font size = "30">+</font></string>
+    <string name="remove_driver"><font size = "30">-</font></string>
 </resources>
