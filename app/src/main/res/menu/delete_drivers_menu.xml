@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/delete_driver"
+        android:orderInCategory="1"
+        android:title="@string/delete_driver"
+        />
+
+    <item
+        android:id="@+id/cancel_delete_driver"
+        android:orderInCategory="2"
+        android:title="@string/cancel_driver"
+        />
+</menu>

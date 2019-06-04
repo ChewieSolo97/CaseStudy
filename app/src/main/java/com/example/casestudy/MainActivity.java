@@ -1,19 +1,26 @@
 package com.example.casestudy;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements DriversAdapter.DriversClickHandler {
 
+    public static int ADD_DRIVER = 0;
     private DriversAdapter mDriversAdapter;
     private RecyclerView mRecyclerView;
+    private int adapterPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +38,8 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
         MenuInflater inflater = getMenuInflater();
-        /* Use the inflater's inflate method to inflate our menu layout to this menu */
         inflater.inflate(R.menu.main_menu, menu);
-        /* Return true so that the menu is displayed in the Toolbar */
         return true;
     }
 
@@ -47,14 +51,46 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     }
 
     @Override
+    public void onLongItemClick(View v, int position) {
+        adapterPosition = position;
+        registerForContextMenu( v );
+        openContextMenu( v );
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.add_driver) {
-            String stuff = "stuff";
-            mDriversAdapter.addDrivers(stuff);
+            startActivityForResult(new Intent(MainActivity.this, AddDriver.class), ADD_DRIVER);
+
         }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        if (requestCode == ADD_DRIVER) {
+            if (resultCode == RESULT_OK) {
+                mDriversAdapter.addDrivers(data.getStringExtra("DATA"));
+            }
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete_drivers_menu, menu);
+        menu.setHeaderTitle("Do you want to remove this driver?");
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        if(item.getItemId()==R.id.delete_driver){
+            mDriversAdapter.removeDrivers(adapterPosition);
+        }
+        return true;
     }
 }

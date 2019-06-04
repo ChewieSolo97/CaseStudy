@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder>{
 
     private ArrayList<String> mDrivers;
+    //private ArrayList<Boolean> deleteDrivers;
     private DriversClickHandler mClickHandler;
+    //private boolean delete = false;
 
     public DriversAdapter(DriversClickHandler clickHandler) {
         mClickHandler = clickHandler;
@@ -21,6 +23,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
 
     public interface DriversClickHandler {
         void onClick(String info);
+        void onLongItemClick(View v, int position);
     }
 
     @NonNull
@@ -47,7 +50,8 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         return mDrivers.size();
     }
 
-    public class DriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class DriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+    View.OnLongClickListener {
 
         public final TextView mDriverTextView;
 
@@ -55,13 +59,21 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
             super(itemView);
             mDriverTextView = itemView.findViewById(R.id.driver);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            String weatherForDay = mDrivers.get(adapterPosition);
-            mClickHandler.onClick(weatherForDay);
+                int adapterPosition = getAdapterPosition();
+                String driver = mDrivers.get(adapterPosition);
+                mClickHandler.onClick(driver);
+        }
+
+
+        @Override
+        public boolean onLongClick(View v) {
+            mClickHandler.onLongItemClick(v, getAdapterPosition());
+            return true;
         }
     }
 
@@ -71,6 +83,11 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
             mDrivers = new ArrayList<>();
         }
         mDrivers.add(driver);
+        notifyDataSetChanged();
+    }
+
+    public void removeDrivers(int position) {
+        mDrivers.remove(position);
         notifyDataSetChanged();
     }
 
