@@ -1,6 +1,7 @@
 package com.example.casestudy;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 
 import java.util.zip.Inflater;
 
-public class DriverSeasonTab extends Fragment {
+public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.DriversSeasonClickHandler {
 
     private DriverSeasonTabViewModel mViewModel;
     private DriverSeasonAdapter adapter;
@@ -31,7 +32,7 @@ public class DriverSeasonTab extends Fragment {
         View root = inflater.inflate(R.layout.driver_season_tab_fragment, container, false);
         season = root.findViewById(R.id.driver_season_RV);
         season.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new DriverSeasonAdapter(null);
+        adapter = new DriverSeasonAdapter(this);
         season.setAdapter(adapter);
 
         // TODO: send the data to the adapter
@@ -46,4 +47,10 @@ public class DriverSeasonTab extends Fragment {
 
     }
 
+    @Override
+    public void onClick(String info) {
+        Intent intent = new Intent(this.getContext(), RaceResults.class);
+        intent.putExtra("RACE", info);
+        startActivity(intent);
+    }
 }

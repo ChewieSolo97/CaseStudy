@@ -13,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".RaceResults" android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".DriverStats"
             android:label="@string/title_activity_driver_stats"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddDriver" />
         <activity android:name=".MainActivity">
             <intent-filter>
