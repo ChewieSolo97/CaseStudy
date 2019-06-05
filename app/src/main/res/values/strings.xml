@@ -7,4 +7,7 @@
     <string name="cancel_driver">"Cancel"</string>
     <string name="add_driver_prompt">Enter Driver\'s Name</string>
     <string name="delete_driver">Delete</string>
+    <string name="title_activity_driver_stats">DriverStats</string>
+    <string name="profile_tab">Profile</string>
+    <string name="season_tab">Season</string>
 </resources>

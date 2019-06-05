@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public void onClick(String info) {
-        Context context = this;
-        Toast.makeText(context, info, Toast.LENGTH_SHORT)
-                .show();
+        Intent intent = new Intent(MainActivity.this, DriverStats.class);
+        intent.putExtra("DRIVER", info);
+        startActivity(intent);
     }
 
     @Override
