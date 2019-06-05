@@ -10,4 +10,6 @@
     <string name="title_activity_driver_stats">DriverStats</string>
     <string name="profile_tab">Profile</string>
     <string name="season_tab">Season</string>
+    <string name="teststring">This is a test</string>
+    <string name="drivers_stats"> %s\'s stats</string>
 </resources>

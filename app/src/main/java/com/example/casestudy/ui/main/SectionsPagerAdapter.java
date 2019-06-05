@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.example.casestudy.R;
 
@@ -26,9 +27,18 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        // this creates a fragment based on the position of what tab the user is on
+        // I will need a if else to control which fragment is created here
+        if (position == 0) {
+            return PlaceholderFragment.newInstance(position);
+        } else if (position == 1) {
+            return DriverSeasonTab.newInstance();
+        } else {
+            // this should never happen, may change this later
+            return new Fragment();
+        }
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
     }
 
     @Nullable

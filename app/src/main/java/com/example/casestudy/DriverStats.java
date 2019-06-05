@@ -9,10 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.casestudy.ui.main.SectionsPagerAdapter;
 
 public class DriverStats extends AppCompatActivity {
+
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +26,7 @@ public class DriverStats extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        title = findViewById(R.id.title);
+        title.setText(getString(R.string.drivers_stats, getIntent().getStringExtra("DRIVER")));
     }
 }
