@@ -1,4 +1,4 @@
-package com.example.casestudy.ui.main;
+package com.example.casestudy;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
@@ -20,10 +20,6 @@ public class PageViewModel extends ViewModel {
             return "This should never happen";
         }
     });
-
-    public void setIndex(int index) {
-        mIndex.setValue(index);
-    }
 
     public LiveData<String> getText() {
         return mText;
