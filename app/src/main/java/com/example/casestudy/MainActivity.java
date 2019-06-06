@@ -4,16 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+
+import java.util.List;
+import POJO.Classes.Driver;
+import Retrofit.RetrofitObjectAPI;
+import POJO.Classes.Drivers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements DriversAdapter.DriversClickHandler {
 
@@ -45,9 +58,10 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public void onClick(String info) {
-        Intent intent = new Intent(MainActivity.this, DriverStats.class);
-        intent.putExtra("DRIVER", info);
-        startActivity(intent);
+        getRetrofitObject();
+//        Intent intent = new Intent(MainActivity.this, DriverStats.class);
+//        intent.putExtra("DRIVER", info);
+//        startActivity(intent);
     }
 
     @Override
@@ -92,5 +106,45 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             mDriversAdapter.removeDrivers(adapterPosition);
         }
         return true;
+    }
+
+    void getRetrofitObject() {
+
+        String url = "http://api.sportradar.us/nascar-ot3/mc/";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitObjectAPI service = retrofit.create(RetrofitObjectAPI.class);
+
+        Call<Drivers> call = service.getDriversDetails();
+
+        call.enqueue(new Callback<Drivers>() {
+            @Override
+            public void onResponse(@NonNull Call<Drivers> called, @NonNull Response<Drivers> responses) {
+
+
+                try {
+                    Drivers test = responses.body();
+                    List<Driver> testing = test.getDrivers();
+
+                    for (Driver sup : testing) {
+                        Log.v("THISBETTERWORK", sup.getFull_name());
+                    }
+
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Drivers> called, Throwable t) {
+                Log.d("onFailure", t.toString());
+            }
+        });
     }
 }
