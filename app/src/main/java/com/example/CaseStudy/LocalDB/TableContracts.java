@@ -2,9 +2,9 @@ package com.example.CaseStudy.LocalDB;
 
 import android.provider.BaseColumns;
 
-public final class DriverTableContract {
+public final class TableContracts {
 
-    private DriverTableContract() {
+    private TableContracts() {
 
     }
 
@@ -28,5 +28,9 @@ public final class DriverTableContract {
         public static final String POLES = "poles";
         public static final String DNF = "dnf";
         public static final String LAPS = "laps";
+    }
+
+    public static class TracksTable implements BaseColumns {
+
     }
 }

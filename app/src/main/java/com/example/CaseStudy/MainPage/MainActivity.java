@@ -3,6 +3,7 @@ package com.example.CaseStudy.MainPage;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,17 +21,22 @@ import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.R;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Classes.DriverInfo.Drivers;
 import POJO.Classes.DriverInfo;
 import Retrofit.RetrofitObjectAPI;
+import Retrofit.APICalls;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+//import static com.example.CaseStudy.LocalDB.Driver.getDrivers;
 
 public class MainActivity extends AppCompatActivity implements DriversAdapter.DriversClickHandler {
 
@@ -62,7 +68,15 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public void onClick(String info) {
-        getRetrofitObject();
+
+        new testAsync().execute("asas");
+
+//        List<String> list = Driver.getDrivers(getApplicationContext());
+//        for (String item : list) {
+//            Log.v("THISBETTERWORK", item);
+//        }
+
+        // what actually happens here
 //        Intent intent = new Intent(MainActivity.this, DriverStats.class);
 //        intent.putExtra("DRIVER", info);
 //        startActivity(intent);
@@ -112,53 +126,26 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         return true;
     }
 
-    void getRetrofitObject() {
+    public class testAsync extends AsyncTask<String, Void, String> {
 
-        // the mc at the end can be changed to the other series
-        String url = "http://api.sportradar.us/nascar-ot3/mc/";
+        // COMPLETED (2) Override the doInBackground method to perform the query. Return the results. (Hint: You've already written the code to perform the query)
+        @Override
+        protected String doInBackground(String... params) {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RetrofitObjectAPI service = retrofit.create(RetrofitObjectAPI.class);
-
-        Call<DriverInfo> call = service.getDriversDetails();
-
-        call.enqueue(new Callback<DriverInfo>() {
-            @Override
-            public void onResponse(@NonNull Call<DriverInfo> called, @NonNull Response<DriverInfo> responses) {
-
-                getBaseContext();
-
-                try {
-                    DriverInfo test = responses.body();
-                    List<Drivers> testing = test.getDrivers();
-
-
-//                    for (Drivers sup : testing) {
-//                        Driver.addDriver(sup.getFull_name(), getApplicationContext());
-//
-//                    }
-                    List<String> list = Driver.getDrivers(getApplicationContext());
-
-                    for (String driver : list) {
-                        Log.v("THISBETTERWORK", driver);
-                    }
-
-
-                } catch (Exception e) {
-                    Log.d("onResponse", "There is an error");
-                    e.printStackTrace();
-                }
-
+            try {
+                APICalls.getDriverData(getApplicationContext());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return "done";
+        }
 
-            @Override
-            public void onFailure(@NonNull Call<DriverInfo> called, Throwable t) {
-                Log.d("onFailure", t.toString());
-            }
-        });
+        // COMPLETED (3) Override onPostExecute to display the results in the TextView
+//        @Override
+//        protected void onPostExecute(String githubSearchResults) {
+//            if (githubSearchResults != null && !githubSearchResults.equals("")) {
+//                mSearchResultsTextView.setText(githubSearchResults);
+//            }
+//        }
     }
 }

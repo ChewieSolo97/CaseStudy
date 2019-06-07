@@ -430,9 +430,9 @@ public class DriverStatistics {
 
         private double avg_start_position;
 
-        private int avg_finish_position;
+        //private int avg_finish_position;
 
-        private int miles_completed;
+        //private int miles_completed;
 
         private String race_name;
 
@@ -532,21 +532,21 @@ public class DriverStatistics {
             return this.avg_start_position;
         }
 
-        public void setAvg_finish_position(int avg_finish_position) {
-            this.avg_finish_position = avg_finish_position;
-        }
+//        public void setAvg_finish_position(int avg_finish_position) {
+//            this.avg_finish_position = avg_finish_position;
+//        }
+//
+//        public int getAvg_finish_position() {
+//            return this.avg_finish_position;
+//        }
 
-        public int getAvg_finish_position() {
-            return this.avg_finish_position;
-        }
-
-        public void setMiles_completed(int miles_completed) {
-            this.miles_completed = miles_completed;
-        }
-
-        public int getMiles_completed() {
-            return this.miles_completed;
-        }
+//        public void setMiles_completed(int miles_completed) {
+//            this.miles_completed = miles_completed;
+//        }
+//
+//        public int getMiles_completed() {
+//            return this.miles_completed;
+//        }
 
         public void setRace_name(String race_name) {
             this.race_name = race_name;
