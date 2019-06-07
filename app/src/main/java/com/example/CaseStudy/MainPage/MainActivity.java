@@ -17,9 +17,10 @@ import android.view.View;
 import com.example.CaseStudy.R;
 
 import java.util.List;
-import POJO.Classes.Driver;
+
+import POJO.Classes.DriverInfo.Drivers;
+import POJO.Classes.DriverInfo;
 import Retrofit.RetrofitObjectAPI;
-import POJO.Classes.Drivers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -118,18 +119,18 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
         RetrofitObjectAPI service = retrofit.create(RetrofitObjectAPI.class);
 
-        Call<Drivers> call = service.getDriversDetails();
+        Call<DriverInfo> call = service.getDriversDetails();
 
-        call.enqueue(new Callback<Drivers>() {
+        call.enqueue(new Callback<DriverInfo>() {
             @Override
-            public void onResponse(@NonNull Call<Drivers> called, @NonNull Response<Drivers> responses) {
+            public void onResponse(@NonNull Call<DriverInfo> called, @NonNull Response<DriverInfo> responses) {
 
 
                 try {
-                    Drivers test = responses.body();
-                    List<Driver> testing = test.getDrivers();
+                    DriverInfo test = responses.body();
+                    List<Drivers> testing = test.getDrivers();
 
-                    for (Driver sup : testing) {
+                    for (Drivers sup : testing) {
                         Log.v("THISBETTERWORK", sup.getFull_name());
                     }
 
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             }
 
             @Override
-            public void onFailure(@NonNull Call<Drivers> called, Throwable t) {
+            public void onFailure(@NonNull Call<DriverInfo> called, Throwable t) {
                 Log.d("onFailure", t.toString());
             }
         });
