@@ -1,4 +1,4 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;

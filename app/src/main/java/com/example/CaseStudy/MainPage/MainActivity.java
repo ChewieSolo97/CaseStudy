@@ -1,9 +1,6 @@
-package com.example.casestudy;
+package com.example.CaseStudy.MainPage;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+
+import com.example.CaseStudy.R;
 
 import java.util.List;
 import POJO.Classes.Driver;
@@ -110,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     void getRetrofitObject() {
 
+        // the mc at the end can be changed to the other series
         String url = "http://api.sportradar.us/nascar-ot3/mc/";
 
         Retrofit retrofit = new Retrofit.Builder()

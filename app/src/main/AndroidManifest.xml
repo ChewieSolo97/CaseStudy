@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.casestudy">
+    package="com.example.CaseStudy">
 
     <!-- got rid of vibrate, may add it back-->
     <!--<uses-permission android:name="android.permission.VIBRATE" />-->
@@ -16,13 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RaceResults" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.example.CaseStudy.DriverRace.RaceResults" android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".DriverStats"
+            android:name="com.example.CaseStudy.DriverProfile.DriverStats"
             android:label="@string/title_activity_driver_stats"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddDriver" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.CaseStudy.MainPage.AddDriver" />
+        <activity android:name="com.example.CaseStudy.MainPage.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

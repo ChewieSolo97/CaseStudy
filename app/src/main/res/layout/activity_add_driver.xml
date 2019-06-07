@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddDriver">
+    tools:context=".MainPage.AddDriver">
 
     <EditText
         android:id="@+id/et_add_driver"

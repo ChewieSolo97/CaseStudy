@@ -1,4 +1,4 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;

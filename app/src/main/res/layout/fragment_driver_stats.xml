@@ -5,7 +5,7 @@
     android:id="@+id/career_stats_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaceholderFragment">
+    tools:context=".DriverProfile.PlaceholderFragment">
 
     <TextView
         android:id="@+id/career_stats"

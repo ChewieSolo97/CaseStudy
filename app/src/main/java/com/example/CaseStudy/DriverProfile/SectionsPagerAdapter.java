@@ -1,4 +1,4 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,6 +6,10 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.CaseStudy.DriverProfile.DriverSeasonTab;
+import com.example.CaseStudy.DriverProfile.PlaceholderFragment;
+import com.example.CaseStudy.R;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

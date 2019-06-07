@@ -1,10 +1,12 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.example.CaseStudy.R;
 
 public class DriverStats extends AppCompatActivity {
 

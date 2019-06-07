@@ -1,4 +1,4 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -8,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.zip.Inflater;
+import com.example.CaseStudy.R;
+import com.example.CaseStudy.DriverRace.RaceResults;
 
 public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.DriversSeasonClickHandler {
 

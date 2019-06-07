@@ -1,16 +1,14 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverRace;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.CaseStudy.R;
 
 public class ResultsFragment extends Fragment {
 

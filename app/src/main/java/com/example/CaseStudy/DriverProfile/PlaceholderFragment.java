@@ -1,4 +1,4 @@
-package com.example.casestudy;
+package com.example.CaseStudy.DriverProfile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+
+import com.example.CaseStudy.R;
 
 /**
  * A placeholder fragment containing a simple view.
