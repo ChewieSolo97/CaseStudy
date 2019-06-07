@@ -1,6 +1,8 @@
 package com.example.CaseStudy.MainPage;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.example.CaseStudy.LocalDB.DatabaseHelper;
+import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Classes.DriverInfo.Drivers;
@@ -125,14 +130,23 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             @Override
             public void onResponse(@NonNull Call<DriverInfo> called, @NonNull Response<DriverInfo> responses) {
 
+                getBaseContext();
 
                 try {
                     DriverInfo test = responses.body();
                     List<Drivers> testing = test.getDrivers();
 
-                    for (Drivers sup : testing) {
-                        Log.v("THISBETTERWORK", sup.getFull_name());
+
+//                    for (Drivers sup : testing) {
+//                        Driver.addDriver(sup.getFull_name(), getApplicationContext());
+//
+//                    }
+                    List<String> list = Driver.getDrivers(getApplicationContext());
+
+                    for (String driver : list) {
+                        Log.v("THISBETTERWORK", driver);
                     }
+
 
                 } catch (Exception e) {
                     Log.d("onResponse", "There is an error");

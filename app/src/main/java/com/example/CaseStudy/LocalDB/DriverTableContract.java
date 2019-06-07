@@ -9,6 +9,9 @@ public final class DriverTableContract {
     }
 
     public static class DriverTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "driver";
+
         public static final String NAME = "name";
         public static final String HEIGHT = "height";
         public static final String BIRTHDAY = "birthday";
