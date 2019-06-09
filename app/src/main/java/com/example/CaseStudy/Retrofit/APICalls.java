@@ -1,4 +1,4 @@
-package Retrofit;
+package com.example.CaseStudy.Retrofit;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,10 +6,8 @@ import android.util.Log;
 
 import com.example.CaseStudy.LocalDB.Driver;
 
-import java.util.List;
-
-import POJO.Classes.DriverInfo;
-import POJO.Classes.DriverStatistics;
+import com.example.CaseStudy.Model.DriverInfo;
+import com.example.CaseStudy.Model.DriverStatistics;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,21 +16,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APICalls {
 
+    // change the mc/ later to a variable to allow changing of series
+    private static final String BASE_URL = "http://api.sportradar.us/nascar-ot3/mc/";
+
     private static DriverInfo information;
     private static DriverStatistics statistics;
 
-    // these will have to be split up
-    public static void getDriverData(final Context context) {
+    public static void setDriverStats(DriverStatistics stats) {
+        statistics = stats;
+    }
+    public static void setDriverInfo(DriverInfo info) {
+        information = info;
+        //Log.wtf("why is this", information.getDrivers().get(0).getFull_name());
+    }
 
-        // the mc at the end can be changed to the other series
-        String url = "http://api.sportradar.us/nascar-ot3/mc/";
-
+    public static RetrofitObjectAPI setUp() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        RetrofitObjectAPI service = retrofit.create(RetrofitObjectAPI.class);
+        return retrofit.create(RetrofitObjectAPI.class);
+    }
+
+    public static void getDriverInfo(final Context context) {
+
+        RetrofitObjectAPI service = setUp();
 
         Call<DriverInfo> call = service.getDriverInfo();
 
@@ -43,12 +52,12 @@ public class APICalls {
                 try {
 
                     DriverInfo info = responses.body();
+
                     if (info == null) {
-                        Log.v("WHATATTATAT", responses.errorBody().string());
-                    } else {
-                        Log.v("whyyyyyy", info.getDrivers().get(0).getFull_name());
+                        Log.wtf("is this null?", responses.errorBody().string());
                     }
-                    setDriverInfo(info);
+
+                    Driver.populateDriverInfo(info, context);
 
                 } catch (Exception e) {
                     Log.d("onResponse", "There is an error");
@@ -64,6 +73,14 @@ public class APICalls {
 
         });
 
+
+        //Log.wtf("why is this", information.getDrivers().get(0).getFull_name());
+//        Driver.populateDriverInfo(information, context);
+    }
+
+    public static void getDriverStats(final Context context) {
+
+        RetrofitObjectAPI service = setUp();
         Call<DriverStatistics> call2 = service.getDriverStats();
         call2.enqueue(new Callback<DriverStatistics>() {
             @Override
@@ -71,7 +88,10 @@ public class APICalls {
 
                 try {
                     DriverStatistics stats = responses.body();
-                    setDriverStats(stats);
+                    if (stats == null) {
+                        Log.wtf("is this null?", responses.errorBody().string());
+                    }
+                    Driver.populateDriverStats(stats, context);
                 } catch (Exception e) {
                     Log.d("onResponse", "There is an error");
                     e.printStackTrace();
@@ -84,28 +104,5 @@ public class APICalls {
             }
         });
 
-        //Log.v("Find THIS!!!!!", info.getDrivers().get(0).getFull_name());
-
-        //Driver.populateDriver(information, statistics, context);
-    }
-
-    public static void setDriverStats(DriverStatistics stats) {
-        statistics = stats;
-    }
-    public static void setDriverInfo(DriverInfo info) {
-        information = info;
     }
 }
-
-
-//List<DriverInfo.Drivers> testing = test.getDrivers();
-
-//                    for (Drivers sup : testing) {
-//                        Driver.addDriver(sup.getFull_name(), getApplicationContext());
-//
-//                    }
-//                    List<String> list = Driver.getDrivers(context);
-//
-//                    for (String driver : list) {
-//                        Log.v("THISBETTERWORK", driver);
-//                    }

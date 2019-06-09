@@ -1,8 +1,8 @@
-package Retrofit;
+package com.example.CaseStudy.Retrofit;
 
 import java.util.List;
 
-import POJO.Classes.DriverInfo;
+import com.example.CaseStudy.Model.DriverInfo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

@@ -2,9 +2,7 @@ package com.example.CaseStudy.MainPage;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,24 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import com.example.CaseStudy.LocalDB.DatabaseHelper;
+import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.R;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.CaseStudy.Retrofit.APICalls;
 
-import POJO.Classes.DriverInfo.Drivers;
-import POJO.Classes.DriverInfo;
-import Retrofit.RetrofitObjectAPI;
-import Retrofit.APICalls;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import java.util.List;
 
 //import static com.example.CaseStudy.LocalDB.Driver.getDrivers;
 
@@ -55,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         mRecyclerView.setLayoutManager(layoutManager);
-        mDriversAdapter = new DriversAdapter(this);
+        mDriversAdapter = new DriversAdapter(this, getApplicationContext());
         mRecyclerView.setAdapter(mDriversAdapter);
+        new testAsync().execute("saj");
     }
 
     @Override
@@ -69,17 +57,11 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     public void onClick(String info) {
 
-        new testAsync().execute("asas");
-
-//        List<String> list = Driver.getDrivers(getApplicationContext());
-//        for (String item : list) {
-//            Log.v("THISBETTERWORK", item);
-//        }
-
+        new otherAsync().execute("asdad");
         // what actually happens here
-//        Intent intent = new Intent(MainActivity.this, DriverStats.class);
-//        intent.putExtra("DRIVER", info);
-//        startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, DriverStats.class);
+        intent.putExtra("DRIVER", info);
+        startActivity(intent);
     }
 
     @Override
@@ -128,24 +110,41 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     public class testAsync extends AsyncTask<String, Void, String> {
 
-        // COMPLETED (2) Override the doInBackground method to perform the query. Return the results. (Hint: You've already written the code to perform the query)
         @Override
         protected String doInBackground(String... params) {
 
             try {
-                APICalls.getDriverData(getApplicationContext());
+                APICalls.getDriverInfo(getApplicationContext());
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "done";
         }
 
-        // COMPLETED (3) Override onPostExecute to display the results in the TextView
 //        @Override
-//        protected void onPostExecute(String githubSearchResults) {
-//            if (githubSearchResults != null && !githubSearchResults.equals("")) {
-//                mSearchResultsTextView.setText(githubSearchResults);
-//            }
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//            new otherAsync().execute("asdad");
 //        }
+    }
+
+    public class otherAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                APICalls.getDriverStats(getApplicationContext());
+//                List<String> list = Driver.getDrivers(getApplicationContext());
+//                String content = "";
+//                for (String stuff : list) {
+//                    content += stuff + " ";
+//                }
+//                Log.wtf("AHHHHHH", content);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "done";
+        }
     }
 }

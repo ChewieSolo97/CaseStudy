@@ -1,4 +1,4 @@
-package POJO.Classes;
+package com.example.CaseStudy.Model;
 
 import java.util.List;
 
