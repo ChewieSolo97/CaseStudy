@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainPage.AddDriver">
 
-    <EditText
-        android:id="@+id/et_add_driver"
+    <SearchView
+        android:id="@+id/sv_add_driver"
+        android:queryHint="@string/add_driver_prompt"
+        android:iconifiedByDefault="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/add_driver_prompt"
-        />
+        android:layout_height="wrap_content">
+    </SearchView>
+
 </LinearLayout>

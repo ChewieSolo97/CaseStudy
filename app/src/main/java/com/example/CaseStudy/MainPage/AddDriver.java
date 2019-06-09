@@ -8,12 +8,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.SearchView;
 
 import com.example.CaseStudy.R;
 
 public class AddDriver extends AppCompatActivity {
 
-    EditText addDriver;
+    SearchView addDriver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class AddDriver extends AppCompatActivity {
         setTitle("Add a Driver");
         setContentView(R.layout.activity_add_driver);
 
-        addDriver = findViewById(R.id.et_add_driver);
+        addDriver = findViewById(R.id.sv_add_driver);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class AddDriver extends AppCompatActivity {
             finish();
         } else if (id == R.id.confirm_add_driver) {
             Intent intent = new Intent();
-            intent.putExtra("DATA", addDriver.getText().toString());
+            intent.putExtra("DATA", addDriver.getQuery().toString());
             setResult(Activity.RESULT_OK, intent);
             finish();
         }

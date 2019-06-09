@@ -2,6 +2,8 @@ package com.example.CaseStudy.MainPage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +18,14 @@ import android.view.View;
 
 
 import com.example.CaseStudy.DriverProfile.DriverStats;
+import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Driver;
+import com.example.CaseStudy.LocalDB.TableContracts;
 import com.example.CaseStudy.R;
 
 import com.example.CaseStudy.Retrofit.APICalls;
 
+import java.util.Calendar;
 import java.util.List;
 
 //import static com.example.CaseStudy.LocalDB.Driver.getDrivers;
@@ -114,18 +119,16 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         protected String doInBackground(String... params) {
 
             try {
-                APICalls.getDriverInfo(getApplicationContext());
+                // checks if the table already exists and is up to date
+                if (upgrade(TableContracts.DriverTable.TABLE_NAME, getApplicationContext())) {
+                    APICalls.getDriverInfo(getApplicationContext());
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "done";
         }
-
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            new otherAsync().execute("asdad");
-//        }
     }
 
     public class otherAsync extends AsyncTask<String, Void, String> {
@@ -134,17 +137,42 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         protected String doInBackground(String... params) {
 
             try {
-                APICalls.getDriverStats(getApplicationContext());
-//                List<String> list = Driver.getDrivers(getApplicationContext());
-//                String content = "";
-//                for (String stuff : list) {
-//                    content += stuff + " ";
-//                }
-//                Log.wtf("AHHHHHH", content);
+                // checks if the table already exists and is up to date
+                if (upgrade(TableContracts.DriverTable.TABLE_NAME, getApplicationContext())) {
+                    APICalls.getDriverStats(getApplicationContext());
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "done";
         }
+    }
+
+    public static boolean upgrade(String tableName, Context context) {
+        boolean upgrade;
+        // this is to get the exact time since epoch at midnight of the current day utc
+        Calendar midnight = Calendar.getInstance();
+        midnight.set(Calendar.AM_PM, 0);
+        midnight.set(Calendar.HOUR, 0);
+        midnight.set(Calendar.MINUTE, 0);
+        midnight.set(Calendar.SECOND, 0);
+        midnight.set(Calendar.MILLISECOND, 0);
+
+        SQLiteDatabase db = DatabaseHelper.getInstance(context).getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT last_update FROM  updates"
+                + " where table_name = ?", new String[]{tableName});
+
+        cursor.moveToFirst();
+        if (cursor.getCount() <= 0) {
+            upgrade = true;
+        } else if (cursor.getLong(cursor.getColumnIndex("last_update")) > midnight.getTimeInMillis()) {
+            upgrade = false; // table has been updated today
+        } else {
+            upgrade = true;
+        }
+        cursor.close();
+        db.close();
+        return upgrade;
     }
 }
