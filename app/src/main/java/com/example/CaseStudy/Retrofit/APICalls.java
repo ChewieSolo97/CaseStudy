@@ -4,13 +4,16 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.LocalDB.CreateDestroyDB;
+import com.example.CaseStudy.LocalDB.CurrentSchedule;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Driver;
 
 import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
+import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonStandings;
 
 import retrofit2.Call;
@@ -132,6 +135,34 @@ public class APICalls {
 
             @Override
             public void onFailure(@NonNull Call<SeasonStandings> called, Throwable t) {
+                Log.d("onFailure", t.toString());
+            }
+
+        });
+    }
+
+    public static void getSeasonSchedule(final Context context, int year) {
+
+        RetrofitObjectAPI service = setUp(year + "/");
+        Call<Schedule> call = service.getSeasonSchedule();
+
+        call.enqueue(new Callback<Schedule>() {
+            @Override
+            public void onResponse(@NonNull Call<Schedule> called, @NonNull Response<Schedule> responses) {
+
+                try {
+
+                    Schedule info = responses.body();
+                    CurrentSchedule.populateSchedule(info, context);
+
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Schedule> called, Throwable t) {
                 Log.d("onFailure", t.toString());
             }
 

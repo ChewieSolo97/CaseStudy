@@ -1,5 +1,7 @@
 package com.example.CaseStudy.LocalDB;
 
+import android.widget.TextView;
+
 public class CreateDestroyDB {
 
     public static final String CREATE_DRIVER_TABLE = "CREATE TABLE " +
@@ -62,5 +64,15 @@ public class CreateDestroyDB {
 
     public static final String DESTROY_RESULTS_TABLE = "DROP TABLE IF EXISTS "
             + TableContracts.ResultsTable.TABLE_NAME;
+
+    public static final String CREATE_SCHEDULE_TABLE = "CREATE TABLE " +
+            TableContracts.ScheduleTable.TABLE_NAME + " (" +
+            TableContracts.ScheduleTable.RACE_ID + " TEXT PRIMARY KEY, " +
+            TableContracts.ScheduleTable.YEAR + " TEXT, " +
+            TableContracts.ScheduleTable.TRACK + " TEXT, " +
+            TableContracts.ScheduleTable.RACE + " TEXT )";
+
+    public static final String DESTROY_SCHEDULE_TABLE = "DROP TABLE IF EXISTS "
+            + TableContracts.ScheduleTable.TABLE_NAME;
 
 }

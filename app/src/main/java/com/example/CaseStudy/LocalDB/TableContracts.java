@@ -51,6 +51,11 @@ public final class TableContracts {
 
     public static class ScheduleTable implements BaseColumns {
 
+        public static final String TABLE_NAME = "schedule";
+        public static final String YEAR = "years";
+        public static final String TRACK = "track";
+        public static final String RACE = "race";
+        public static final String RACE_ID = "race_id";
     }
 
     public static class ResultsTable implements BaseColumns {

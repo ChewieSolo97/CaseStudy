@@ -58,7 +58,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         driversViewHolder.mDriverTextView.setText(driver);
         driversViewHolder.numberTV.setText(mDrivers.get(i).getNumber());
         //Log.wtf("Adapter", "Got here first");
-        driversViewHolder.pointsTV.setText(String.valueOf(Standings.queryStandings(driver,
+        driversViewHolder.pointsTV.setText(context.getString(R.string.point_pos, Standings.queryStandings(driver,
                 Calendar.getInstance().get(Calendar.YEAR), context).getRank()));
     }
 

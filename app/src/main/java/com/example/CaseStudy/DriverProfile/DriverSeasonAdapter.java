@@ -8,22 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.CaseStudy.LocalDB.CurrentSchedule;
+import com.example.CaseStudy.Model.SeasonSchedule;
 import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DriverSeasonAdapter extends RecyclerView.Adapter<DriverSeasonAdapter.DriversSeasonViewHolder>{
 
-    private ArrayList<String> races;
+    private ArrayList<SeasonSchedule> races;
     private DriversSeasonClickHandler mClickHandler;
 
-    public DriverSeasonAdapter(DriversSeasonClickHandler clickHandler) {
+    public DriverSeasonAdapter(DriversSeasonClickHandler clickHandler, Context context) {
         mClickHandler = clickHandler;
         races = new ArrayList<>();
-        races.add("race 1");
-        races.add("race 2");
-        races.add("race 3");
-        races.add("race 4");
+        races.addAll(CurrentSchedule.getSchedule(context,
+                Calendar.getInstance().get(Calendar.YEAR)));
+//        races.add("race 1");
+//        races.add("race 2");
+//        races.add("race 3");
+//        races.add("race 4");
     }
 
     public interface DriversSeasonClickHandler {
@@ -44,8 +49,8 @@ public class DriverSeasonAdapter extends RecyclerView.Adapter<DriverSeasonAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DriversSeasonViewHolder driversViewHolder, int i) {
-        String driver = races.get(i);
-        driversViewHolder.driverRaceTV.setText(driver);
+        SeasonSchedule driver = races.get(i);
+        driversViewHolder.driverRaceTV.setText(driver.getName());
     }
 
     @Override
@@ -67,8 +72,8 @@ public class DriverSeasonAdapter extends RecyclerView.Adapter<DriverSeasonAdapte
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            String race = races.get(adapterPosition);
-            mClickHandler.onClick(race);
+            SeasonSchedule race = races.get(adapterPosition);
+            mClickHandler.onClick(race.getID());
         }
     }
 }

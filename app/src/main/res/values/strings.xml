@@ -30,6 +30,8 @@
     <string name="poles">Poles: %d</string>
     <string name="dnf">DNF\'s: %d</string>
     <string name="laps">Laps Led: %d</string>
+    <string name="point_pos">Current Points Position: #%d</string>
+
 
 
 

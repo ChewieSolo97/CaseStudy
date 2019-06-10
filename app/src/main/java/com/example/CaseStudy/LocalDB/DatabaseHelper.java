@@ -29,8 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CreateDestroyDB.CREATE_DRIVER_TABLE);
             db.execSQL(CreateDestroyDB.CREATE_UPDATE_TABLE);
             db.execSQL(CreateDestroyDB.CREATE_SAVED_DRIVERS_TABLE);
-            Log.wtf("wth", CreateDestroyDB.CREATE_RESULTS_TABLE);
             db.execSQL(CreateDestroyDB.CREATE_RESULTS_TABLE);
+            db.execSQL(CreateDestroyDB.CREATE_SCHEDULE_TABLE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CreateDestroyDB.DESTROY_UPDATE_TABLE);
         db.execSQL(CreateDestroyDB.DESTROY_SAVED_DRIVERS_TABLE);
         db.execSQL(CreateDestroyDB.DESTROY_RESULTS_TABLE);
+        db.execSQL(CreateDestroyDB.DESTROY_SCHEDULE_TABLE);
         onCreate(db);
     }
 

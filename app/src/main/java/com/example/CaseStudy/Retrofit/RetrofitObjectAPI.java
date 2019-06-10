@@ -2,6 +2,7 @@ package com.example.CaseStudy.Retrofit;
 
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
+import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonStandings;
 
 import retrofit2.Call;
@@ -21,4 +22,7 @@ public interface RetrofitObjectAPI {
     // using second key to get around the qps limit
     @GET("standings/drivers.json?api_key=zz4jgxdagdhs79pemm2s3yty")
     Call<SeasonStandings> getSeasonStandings();
+
+    @GET("races/schedule.json?api_key=zz4jgxdagdhs79pemm2s3yty")
+    Call<Schedule> getSeasonSchedule();
 }

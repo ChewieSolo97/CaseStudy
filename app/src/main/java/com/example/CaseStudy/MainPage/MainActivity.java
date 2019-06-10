@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     public void onClick(String info) {
 
-        // what actually happens here
         Intent intent = new Intent(MainActivity.this, DriverStats.class);
         intent.putExtra("DRIVER", info);
         startActivity(intent);
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        new scheduleAsync().execute(String.valueOf(Calendar.getInstance().get(Calendar.YEAR))); // grabs current year
         new DriverStatsAsync().execute("asdad");
         int id = item.getItemId();
         if (id == R.id.add_driver) {
@@ -200,9 +200,28 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         } else {
             upgrade = true;
         }
+        Log.wtf("tablename", tableName);
         Log.wtf("upgrade", String.valueOf(upgrade));
         cursor.close();
         //db.close();
         return upgrade;
+    }
+
+    public class scheduleAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                if (MainActivity.upgrade(TableContracts.ScheduleTable.TABLE_NAME, getApplicationContext())) {
+                    APICalls.getSeasonSchedule(getApplicationContext(),
+                            Calendar.getInstance().get(Calendar.YEAR));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "done";
+        }
     }
 }

@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:id="@+id/current_points"
                 android:textSize="16sp"
-                android:text="this will be points"
+                android:text="@string/point_pos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
