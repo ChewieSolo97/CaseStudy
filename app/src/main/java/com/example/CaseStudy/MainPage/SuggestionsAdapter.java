@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.CaseStudy.LocalDB.Driver;
+import com.example.CaseStudy.Model.DriverObject;
 import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
     public SuggestionsAdapter(SuggestionsClickHandler clickHandler, Context context) {
         this.clickHandler = clickHandler;
         suggestions = new ArrayList<>();
+        list = new ArrayList<>();
         new loadDrivers().execute(context);
     }
 
@@ -96,22 +98,24 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
 
     public class loadDrivers extends AsyncTask<Context, Void, String> {
 
+        List<DriverObject> drivers;
         @Override
         protected String doInBackground(Context... params) {
 
             try {
-                list = Driver.getDrivers(params[0]);
+                drivers = Driver.getDrivers(params[0]);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "done";
         }
 
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            suggestions.addAll(list);
-//            notifyDataSetChanged();
-//        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            for (DriverObject driver : drivers) {
+                list.add(driver.getName());
+            }
+        }
     }
 }

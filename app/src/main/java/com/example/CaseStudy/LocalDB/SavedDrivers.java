@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,12 @@ public class SavedDrivers {
         ContentValues values = new ContentValues();
         values.put(TableContracts.SavedDriversTable.NAME, driver);
         db.replace(TableContracts.SavedDriversTable.TABLE_NAME, null, values);
+    }
+
+    public static void removeDriver(String driver, Context context) {
+        SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
+        db.delete(TableContracts.SavedDriversTable.TABLE_NAME,
+                TableContracts.SavedDriversTable.NAME + " = ?", new String[]{driver});
     }
 
     public static List<String> getDrivers(Context context) {

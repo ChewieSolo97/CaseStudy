@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.CaseStudy.Model.DriverInfo;
+import com.example.CaseStudy.Model.DriverObject;
 import com.example.CaseStudy.Model.DriverStatistics;
 
 
@@ -110,21 +111,65 @@ public class Driver {
 
     }
 
-    public static List<String> getDrivers(Context context) {
+    public static List<DriverObject> getDrivers(Context context) {
         SQLiteDatabase db = DatabaseHelper.getInstance(context).getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TableContracts.DriverTable.TABLE_NAME, null);
 
-        List<String> list = new ArrayList<String>();
+        List<DriverObject> list = new ArrayList<>();
+        DriverObject driver;
         while (cursor.moveToNext()) {
-            list.add(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.DriverTable.NAME)));
-            //list.add(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.DriverTable.WINS)));
+            driver = new DriverObject();
+            driver.setName(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.NAME)));
+            driver.setHeight(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.HEIGHT)));
+            driver.setBirthday(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.BIRTHDAY)));
+            driver.setRookieYear(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.ROOKIE_YEAR)));
+            driver.setResidence(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.RESIDENCE)));
+            driver.setBirthplace(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.BIRTHPLACE)));
+            driver.setTeam(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.TEAM)));
+            driver.setCrewchief(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.CREWCHIEF)));
+            driver.setNumber(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.NUMBER)));
+            driver.setStarts(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.STARTS)));
+            driver.setWins(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.WINS)));
+            driver.setTop5s(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.TOP5S)));
+            driver.setTop10s(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.TOP10S)));
+            driver.setPoles(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.POLES)));
+            driver.setDnf(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.DNF)));
+            driver.setLapsled(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.LAPS)));
+
+            list.add(driver);
         }
         cursor.close();
         return list;
     }
 
     // this will return one driver
-    public static String queryDriver() {
-        return null;
+    public static DriverObject queryDriver(String name, Context context) {
+
+        SQLiteDatabase db = DatabaseHelper.getInstance(context).getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TableContracts.DriverTable.TABLE_NAME +
+                " WHERE name = '" + name + "'", null);
+
+        DriverObject driver;
+        cursor.moveToNext();
+            driver = new DriverObject();
+            driver.setName(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.NAME)));
+            driver.setHeight(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.HEIGHT)));
+            driver.setBirthday(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.BIRTHDAY)));
+            driver.setRookieYear(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.ROOKIE_YEAR)));
+            driver.setResidence(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.RESIDENCE)));
+            driver.setBirthplace(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.BIRTHPLACE)));
+            driver.setTeam(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.TEAM)));
+            driver.setCrewchief(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.CREWCHIEF)));
+            driver.setNumber(cursor.getString(cursor.getColumnIndex(TableContracts.DriverTable.NUMBER)));
+            driver.setStarts(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.STARTS)));
+            driver.setWins(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.WINS)));
+            driver.setTop5s(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.TOP5S)));
+            driver.setTop10s(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.TOP10S)));
+            driver.setPoles(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.POLES)));
+            driver.setDnf(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.DNF)));
+            driver.setLapsled(cursor.getInt(cursor.getColumnIndex(TableContracts.DriverTable.LAPS)));
+
+        cursor.close();
+        return driver;
     }
 }

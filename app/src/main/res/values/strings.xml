@@ -16,6 +16,23 @@
     <string name="practice">Practice</string>
     <string name="qualifying">Qualifying</string>
     <string name="personal_info">Personal Info</string>
+    <string name="height">Height: %d</string>
+    <string name="bday">Birthday: %s</string>
+    <string name="rookie">Rookie Year: %d</string>
+    <string name="residence">Residence: %s</string>
+    <string name="birthplace">Birthplace: %s</string>
+    <string name="team">Team: %s</string>
+    <string name="crewchief">Crew Chief: %s</string>
+    <string name="starts">Starts: %d</string>
+    <string name="wins">Wins: %d</string>
+    <string name="top5">Top 5\'s: %d</string>
+    <string name="top10">Top 10\'s: %d</string>
+    <string name="poles">Poles: %d</string>
+    <string name="dnf">DNF\'s: %d</string>
+    <string name="laps">Laps Led: %d</string>
+
+
+
 
 
 </resources>

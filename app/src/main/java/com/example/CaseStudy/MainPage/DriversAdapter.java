@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.LocalDB.SavedDrivers;
+import com.example.CaseStudy.Model.DriverObject;
 import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder> {
 
-    private ArrayList<String> mDrivers;
+    private ArrayList<DriverObject> mDrivers;
     //private ArrayList<Boolean> deleteDrivers;
     private DriversClickHandler mClickHandler;
     private Context context;
@@ -27,8 +28,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         mClickHandler = clickHandler;
         mDrivers = new ArrayList<>();
         this.context = context;
-        mDrivers.addAll(SavedDrivers.getDrivers(context));
-        notifyDataSetChanged();
+        new loadDrivers().execute(context);
     }
 
     public interface DriversClickHandler {
@@ -51,8 +51,10 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
 
     @Override
     public void onBindViewHolder(@NonNull DriversViewHolder driversViewHolder, int i) {
-        String driver = mDrivers.get(i);
+        String driver = mDrivers.get(i).getName();
         driversViewHolder.mDriverTextView.setText(driver);
+        driversViewHolder.numberTV.setText(mDrivers.get(i).getNumber());
+        //driversViewHolder.pointsTV.setText(mDrivers.get(i).getNumber());
     }
 
     @Override
@@ -65,10 +67,14 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
             View.OnLongClickListener {
 
         public final TextView mDriverTextView;
+        public final TextView numberTV;
+        public final TextView pointsTV;
 
         public DriversViewHolder(View itemView) {
             super(itemView);
             mDriverTextView = itemView.findViewById(R.id.driver);
+            numberTV = itemView.findViewById(R.id.list_number);
+            pointsTV = itemView.findViewById(R.id.current_points);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
@@ -76,7 +82,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            String driver = mDrivers.get(adapterPosition);
+            String driver = mDrivers.get(adapterPosition).getName();
             mClickHandler.onClick(driver);
         }
 
@@ -92,36 +98,42 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
     public void addDrivers(String driver) {
 
         SavedDrivers.saveDriver(driver, context);
-        mDrivers.add(driver);
         new loadDrivers().execute(context);
-        notifyDataSetChanged();
     }
 
     public void removeDrivers(int position) {
+        SavedDrivers.removeDriver(mDrivers.get(position).getName(), context);
         mDrivers.remove(position);
         notifyDataSetChanged();
     }
 
     public class loadDrivers extends AsyncTask<Context, Void, String> {
 
-        List<String> list;
+        List<DriverObject> list = new ArrayList<>();
+        List<String> saved = new ArrayList<>();
 
         @Override
         protected String doInBackground(Context... params) {
 
             try {
                 list = Driver.getDrivers(params[0]);
+                saved = SavedDrivers.getDrivers(params[0]);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return "done";
         }
 
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            mDrivers.addAll(list);
-//            notifyDataSetChanged();
-//        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            mDrivers.clear();
+            for (DriverObject driver : list) {
+                if (saved.contains(driver.getName())) {
+                    mDrivers.add(driver);
+                }
+            }
+            notifyDataSetChanged();
+        }
     }
 }

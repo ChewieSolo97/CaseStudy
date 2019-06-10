@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name_number"
         android:paddingTop="12dp"
         android:paddingRight="12dp"
         android:paddingLeft="12dp"
@@ -52,37 +51,37 @@
 
         <TextView
             android:id="@+id/height"
-            android:text="height"
+            android:text="@string/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/birthday"
-            android:text="bday"
+            android:text="@string/bday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/rookie_year"
-            android:text="rookie"
+            android:text="@string/rookie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/residence"
-            android:text="residence"
+            android:text="@string/residence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/birthplace"
-            android:text="birthplace"
+            android:text="@string/birthplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/team"
-            android:text="team"
+            android:text="@string/team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/crew_chief"
-            android:text="crew chief"
+            android:text="@string/crewchief"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -111,20 +110,20 @@
                 android:id="@+id/wins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wins:"/>
+                android:text="@string/wins"/>
             <TextView
                 android:id="@+id/starts"
-                android:text="Starts:"
+                android:text="@string/starts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/top5"
-                android:text="Top 5's"
+                android:text="@string/top5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/top10"
-                android:text="Top 10's"
+                android:text="@string/top10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -135,17 +134,17 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/poles"
-                android:text="Poles:"
+                android:text="@string/poles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/dnf"
-                android:text="DNF'S"
+                android:text="@string/dnf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/laps_led"
-                android:text="Laps Led"
+                android:text="@string/laps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
