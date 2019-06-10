@@ -15,4 +15,11 @@
         android:layout_height="wrap_content">
     </SearchView>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/suggestions_RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

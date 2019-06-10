@@ -5,30 +5,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-
 import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
-import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.LocalDB.TableContracts;
 import com.example.CaseStudy.R;
-
 import com.example.CaseStudy.Retrofit.APICalls;
 
 import java.util.Calendar;
-import java.util.List;
-
-//import static com.example.CaseStudy.LocalDB.Driver.getDrivers;
 
 public class MainActivity extends AppCompatActivity implements DriversAdapter.DriversClickHandler {
 

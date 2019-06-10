@@ -1,11 +1,9 @@
 package com.example.CaseStudy.MainPage;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,11 @@ import android.widget.TextView;
 
 import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.R;
-import com.example.CaseStudy.Retrofit.APICalls;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder>{
+public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder> {
 
     private ArrayList<String> mDrivers;
     //private ArrayList<Boolean> deleteDrivers;
@@ -33,6 +30,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
 
     public interface DriversClickHandler {
         void onClick(String info);
+
         void onLongItemClick(View v, int position);
     }
 
@@ -61,7 +59,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
     }
 
     public class DriversViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-    View.OnLongClickListener {
+            View.OnLongClickListener {
 
         public final TextView mDriverTextView;
 
@@ -74,9 +72,9 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
 
         @Override
         public void onClick(View v) {
-                int adapterPosition = getAdapterPosition();
-                String driver = mDrivers.get(adapterPosition);
-                mClickHandler.onClick(driver);
+            int adapterPosition = getAdapterPosition();
+            String driver = mDrivers.get(adapterPosition);
+            mClickHandler.onClick(driver);
         }
 
 
@@ -105,6 +103,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
     public class loadDrivers extends AsyncTask<Context, Void, String> {
 
         List<String> list;
+
         @Override
         protected String doInBackground(Context... params) {
 
@@ -116,12 +115,11 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
             return "done";
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            mDrivers.addAll(list);
-            notifyDataSetChanged();
-        }
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//            mDrivers.addAll(list);
+//            notifyDataSetChanged();
+//        }
     }
-
 }
