@@ -7,10 +7,75 @@
     tools:context=".MainPage.MainActivity">
 
     <TextView
-        android:id="@+id/season_stats"
+        android:text="Stats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This will hold season stats"/>
+        android:textAlignment="center"
+        android:textSize="22sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/personal_stats"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/season_wins"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wins:"/>
+            <TextView
+                android:id="@+id/season_starts"
+                android:text="Starts:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/season_top5"
+                android:text="Top 5's"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/season_top10"
+                android:text="Top 10's"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/season_poles"
+                android:text="Poles:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/season_dnf"
+                android:text="DNF'S"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/season_laps_led"
+                android:text="Laps Led"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/driver_season_RV"
