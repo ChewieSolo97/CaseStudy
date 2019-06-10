@@ -42,4 +42,33 @@ public final class TableContracts {
         public static final String TABLE_NAME = "saved_drivers";
         public static final String NAME = "name";
     }
+
+    public static class YearsTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "years";
+        public static final String YEAR = "year";
+    }
+
+    public static class ScheduleTable implements BaseColumns {
+
+    }
+
+    public static class ResultsTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "results";
+        public static final String YEAR = "year";
+        public static final String RANK = "rank";
+        public static final String FULL_NAME = "full_name";
+        public static final String POINTS = "points";
+        public static final String STARTS = "starts";
+        public static final String WINS = "wins";
+        public static final String POLES = "poles";
+        public static final String TOP5 = "top5";
+        public static final String TOP10 = "top10";
+        public static final String DNF = "dnf";
+        public static final String LAPS_LED = "laps_led";
+        public static final String AVG_START = "avg_start";
+        public static final String AVG_FINISH = "avg_finish";
+
+    }
 }

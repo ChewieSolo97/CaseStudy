@@ -35,6 +35,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
         adapter = new DriverSeasonAdapter(this);
         season.setAdapter(adapter);
 
+
         // TODO: send the data to the adapter
         return root;
     }
@@ -42,7 +43,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(DriverSeasonTabViewModel.class);
+        //mViewModel = ViewModelProviders.of(this).get(DriverSeasonTabViewModel.class);
         // TODO: Use the ViewModel to load the data
 
     }

@@ -41,4 +41,26 @@ public class CreateDestroyDB {
 
     public static final String DESTROY_SAVED_DRIVERS_TABLE = "DROP TABLE IF EXISTS "
             + TableContracts.SavedDriversTable.TABLE_NAME;
+
+    public static final String CREATE_RESULTS_TABLE = " CREATE TABLE " +
+            TableContracts.ResultsTable.TABLE_NAME + " (" +
+            TableContracts.ResultsTable.YEAR + " TEXT, " +
+            TableContracts.ResultsTable.RANK + " INTEGER, " +
+            TableContracts.ResultsTable.FULL_NAME + " TEXT, " +
+            TableContracts.ResultsTable.POINTS + " INTEGER, " +
+            TableContracts.ResultsTable.STARTS + " INTEGER, " +
+            TableContracts.ResultsTable.WINS + " INTEGER, " +
+            TableContracts.ResultsTable.POLES + " INTEGER, " +
+            TableContracts.ResultsTable.TOP5 + " INTEGER, " +
+            TableContracts.ResultsTable.TOP10 + " INTEGER, " +
+            TableContracts.ResultsTable.DNF + " INTEGER, " +
+            TableContracts.ResultsTable.LAPS_LED + " INTEGER, " +
+            TableContracts.ResultsTable.AVG_START + " REAL, " +
+            TableContracts.ResultsTable.AVG_FINISH + " REAL, " +
+            "PRIMARY KEY (" + TableContracts.ResultsTable.YEAR
+            + ", " + TableContracts.ResultsTable.RANK + ") )";
+
+    public static final String DESTROY_RESULTS_TABLE = "DROP TABLE IF EXISTS "
+            + TableContracts.ResultsTable.TABLE_NAME;
+
 }
