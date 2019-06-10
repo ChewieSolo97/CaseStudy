@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         mRecyclerView.setLayoutManager(layoutManager);
         mDriversAdapter = new DriversAdapter(this, getApplicationContext());
         mRecyclerView.setAdapter(mDriversAdapter);
-        new testAsync().execute("saj");
+        new DriverInfoAsync().execute("saj");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     public void onClick(String info) {
 
-        new otherAsync().execute("asdad");
+        new DriverStatsAsync().execute("asdad");
         // what actually happens here
         Intent intent = new Intent(MainActivity.this, DriverStats.class);
         intent.putExtra("DRIVER", info);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         return true;
     }
 
-    public class testAsync extends AsyncTask<String, Void, String> {
+    public class DriverInfoAsync extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         }
     }
 
-    public class otherAsync extends AsyncTask<String, Void, String> {
+    public class DriverStatsAsync extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {

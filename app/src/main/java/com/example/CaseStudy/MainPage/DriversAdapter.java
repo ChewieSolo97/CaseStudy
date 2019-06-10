@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.CaseStudy.LocalDB.Driver;
+import com.example.CaseStudy.LocalDB.SavedDrivers;
 import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         mClickHandler = clickHandler;
         mDrivers = new ArrayList<>();
         this.context = context;
+        mDrivers.addAll(SavedDrivers.getDrivers(context));
+        notifyDataSetChanged();
     }
 
     public interface DriversClickHandler {
@@ -87,9 +90,8 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
 
 
     public void addDrivers(String driver) {
-        if (mDrivers == null) {
-            mDrivers = new ArrayList<>();
-        }
+
+        SavedDrivers.saveDriver(driver, context);
         mDrivers.add(driver);
         new loadDrivers().execute(context);
         notifyDataSetChanged();
