@@ -10,7 +10,8 @@ import com.example.CaseStudy.R;
 
 public class DriverStats extends AppCompatActivity {
 
-    TextView title;
+    public static String name;
+    public TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +24,6 @@ public class DriverStats extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         title = findViewById(R.id.title);
         title.setText(getString(R.string.drivers_stats, getIntent().getStringExtra("DRIVER")));
+        name =  getIntent().getStringExtra("DRIVER");
     }
 }

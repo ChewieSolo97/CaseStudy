@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.CaseStudy.DriverProfile.DriverSeasonTab;
-import com.example.CaseStudy.DriverProfile.PlaceholderFragment;
 import com.example.CaseStudy.R;
 
 /**
@@ -31,7 +29,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // this creates a fragment based on the position of what tab the user is on
         // I will need a if else to control which fragment is created here
         if (position == 0) {
-            return PlaceholderFragment.newInstance(position);
+            return ProfileFragment.newInstance(position);
         } else if (position == 1) {
             return DriverSeasonTab.newInstance();
         } else {
@@ -39,7 +37,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             return new Fragment();
         }
         // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
+        // Return a ProfileFragment (defined as a static inner class below).
     }
 
     @Nullable
