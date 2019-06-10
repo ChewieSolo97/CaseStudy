@@ -56,7 +56,7 @@ public final class TableContracts {
     public static class ResultsTable implements BaseColumns {
 
         public static final String TABLE_NAME = "results";
-        public static final String YEAR = "year";
+        public static final String YEAR = "years";
         public static final String RANK = "rank";
         public static final String FULL_NAME = "full_name";
         public static final String POINTS = "points";

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 
 import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.LocalDB.SavedDrivers;
+import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.Model.DriverObject;
 import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder> {
@@ -54,7 +57,9 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         String driver = mDrivers.get(i).getName();
         driversViewHolder.mDriverTextView.setText(driver);
         driversViewHolder.numberTV.setText(mDrivers.get(i).getNumber());
-        //driversViewHolder.pointsTV.setText(mDrivers.get(i).getNumber());
+        //Log.wtf("Adapter", "Got here first");
+        driversViewHolder.pointsTV.setText(String.valueOf(Standings.queryStandings(driver,
+                Calendar.getInstance().get(Calendar.YEAR), context).getRank()));
     }
 
     @Override

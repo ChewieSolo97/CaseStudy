@@ -18,6 +18,7 @@ public interface RetrofitObjectAPI {
     @GET("drivers/2019/drivers.json?api_key=" + API_KEY)
     Call<DriverStatistics> getDriverStats();
 
-    @GET("/standings/drivers.xml?api_key=" + API_KEY)
+    // using second key to get around the qps limit
+    @GET("standings/drivers.json?api_key=zz4jgxdagdhs79pemm2s3yty")
     Call<SeasonStandings> getSeasonStandings();
 }

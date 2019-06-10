@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +18,9 @@ import android.view.View;
 
 import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
+import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.LocalDB.TableContracts;
+import com.example.CaseStudy.Model.SeasonStandings;
 import com.example.CaseStudy.R;
 import com.example.CaseStudy.Retrofit.APICalls;
 
@@ -33,15 +36,16 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.main_RV);
         LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
 
         mRecyclerView.setLayoutManager(layoutManager);
-        mDriversAdapter = new DriversAdapter(this, getApplicationContext());
+        mDriversAdapter = new DriversAdapter(MainActivity.this, getApplicationContext());
         mRecyclerView.setAdapter(mDriversAdapter);
+        new resultsAsync().execute(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
         new DriverInfoAsync().execute("saj");
     }
 
@@ -55,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     public void onClick(String info) {
 
-        new DriverStatsAsync().execute("asdad");
         // what actually happens here
         Intent intent = new Intent(MainActivity.this, DriverStats.class);
         intent.putExtra("DRIVER", info);
@@ -71,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        new DriverStatsAsync().execute("asdad");
         int id = item.getItemId();
         if (id == R.id.add_driver) {
             startActivityForResult(new Intent(MainActivity.this, AddDriver.class), ADD_DRIVER);
-
         }
 
 
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
                 // checks if the table already exists and is up to date
                 if (upgrade(TableContracts.DriverTable.TABLE_NAME, getApplicationContext())) {
                     APICalls.getDriverInfo(getApplicationContext());
+                    //Log.wtf("got here", String.valueOf(System.currentTimeMillis()));
                 }
 
             } catch (Exception e) {
@@ -122,6 +126,12 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             }
             return "done";
         }
+
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//            new resultsAsync().execute(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
+//        }
     }
 
     public class DriverStatsAsync extends AsyncTask<String, Void, String> {
@@ -140,6 +150,32 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             }
             return "done";
         }
+    }
+
+    public class resultsAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                // checks if the table already exists and is up to date
+                if (MainActivity.upgrade(TableContracts.ResultsTable.TABLE_NAME, getApplicationContext())) {
+
+                     APICalls.getSeasonStandings(getApplicationContext(),
+                            Calendar.getInstance().get(Calendar.YEAR));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "done";
+        }
+
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//
+//        }
     }
 
     public static boolean upgrade(String tableName, Context context) {
@@ -164,8 +200,9 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         } else {
             upgrade = true;
         }
+        Log.wtf("upgrade", String.valueOf(upgrade));
         cursor.close();
-        db.close();
+        //db.close();
         return upgrade;
     }
 }

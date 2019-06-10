@@ -4,8 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.CaseStudy.LocalDB.CreateDestroyDB;
+import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Driver;
 
+import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
 import com.example.CaseStudy.Model.SeasonStandings;
@@ -105,7 +108,7 @@ public class APICalls {
 
     public static void getSeasonStandings(final Context context, int year) {
 
-        RetrofitObjectAPI service = setUp(String.valueOf(year));
+        RetrofitObjectAPI service = setUp(String.valueOf(year) + "/");
         Call<SeasonStandings> call = service.getSeasonStandings();
 
         call.enqueue(new Callback<SeasonStandings>() {
@@ -119,8 +122,7 @@ public class APICalls {
                     if (info == null) {
                         Log.wtf("is this null?", responses.errorBody().string());
                     }
-
-                    //Driver.populateDriverInfo(info, context);
+                    Standings.populateStandings(info, context);
 
                 } catch (Exception e) {
                     Log.d("onResponse", "There is an error");

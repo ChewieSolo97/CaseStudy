@@ -33,6 +33,8 @@ public class Standings {
             db.insert(TableContracts.ResultsTable.TABLE_NAME, null, values);
             values.clear();
         }
+
+        Update.updatedTable(TableContracts.ResultsTable.TABLE_NAME, System.currentTimeMillis(), context);
     }
 
 
@@ -41,7 +43,7 @@ public class Standings {
 
         SQLiteDatabase db = DatabaseHelper.getInstance(context).getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TableContracts.ResultsTable.TABLE_NAME +
-                " WHERE name = '" + name + "' AND year = '" + year + "'", null);
+                " WHERE full_name = '" + name + "' AND years = '" + year + "'", null);
 
         SeasonResults results = new SeasonResults();
         cursor.moveToNext();

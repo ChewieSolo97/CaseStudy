@@ -3,6 +3,7 @@ package com.example.CaseStudy.LocalDB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -24,10 +25,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CreateDestroyDB.CREATE_DRIVER_TABLE);
-        db.execSQL(CreateDestroyDB.CREATE_UPDATE_TABLE);
-        db.execSQL(CreateDestroyDB.CREATE_SAVED_DRIVERS_TABLE);
-        db.execSQL(CreateDestroyDB.CREATE_RESULTS_TABLE);
+        try {
+            db.execSQL(CreateDestroyDB.CREATE_DRIVER_TABLE);
+            db.execSQL(CreateDestroyDB.CREATE_UPDATE_TABLE);
+            db.execSQL(CreateDestroyDB.CREATE_SAVED_DRIVERS_TABLE);
+            Log.wtf("wth", CreateDestroyDB.CREATE_RESULTS_TABLE);
+            db.execSQL(CreateDestroyDB.CREATE_RESULTS_TABLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is

@@ -25,6 +25,8 @@ public class Driver {
 
     public static void populateDriverInfo(DriverInfo info, Context context) {
         SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
+        db.execSQL(CreateDestroyDB.DESTROY_DRIVER_TABLE);
+        db.execSQL(CreateDestroyDB.CREATE_DRIVER_TABLE);
         ContentValues values = new ContentValues();
 
         for (DriverInfo.Drivers driver : info.getDrivers()) {
