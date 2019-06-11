@@ -23,6 +23,6 @@ public interface RetrofitObjectAPI {
     @GET("standings/drivers.json?api_key=zz4jgxdagdhs79pemm2s3yty")
     Call<SeasonStandings> getSeasonStandings();
 
-    @GET("races/schedule.json?api_key=zz4jgxdagdhs79pemm2s3yty")
+    @GET("races/schedule.json?api_key=jr2kxvjrm7hpktj8jztrxcec")
     Call<Schedule> getSeasonSchedule();
 }

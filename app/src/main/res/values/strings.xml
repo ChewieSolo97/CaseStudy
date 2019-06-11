@@ -16,7 +16,7 @@
     <string name="practice">Practice</string>
     <string name="qualifying">Qualifying</string>
     <string name="personal_info">Personal Info</string>
-    <string name="height">Height: %d</string>
+    <string name="height">Height: %d\"</string>
     <string name="bday">Birthday: %s</string>
     <string name="rookie">Rookie Year: %d</string>
     <string name="residence">Residence: %s</string>
@@ -31,10 +31,11 @@
     <string name="dnf">DNF\'s: %d</string>
     <string name="laps">Laps Led: %d</string>
     <string name="point_pos">Current Points Position: #%d</string>
+    <string name="change_year">Enter the Desired Year</string>
+    <string name="season_tag">SeasonTag</string>
 
-
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

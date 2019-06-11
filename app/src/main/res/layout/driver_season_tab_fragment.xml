@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainPage.MainActivity">
+    tools:context=".MainPage.MainActivity"
+    android:id="@+id/season_tab"
+    android:tag="@string/season_tag">
 
     <TextView
         android:text="Stats"

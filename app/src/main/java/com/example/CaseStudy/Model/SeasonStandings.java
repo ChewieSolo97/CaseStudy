@@ -121,7 +121,7 @@ public class Drivers
 
     private int laps_completed;
 
-    private int money;
+//    private int money;
 
     private double avg_start_position;
 
@@ -259,12 +259,12 @@ public class Drivers
     public int getLaps_completed(){
         return this.laps_completed;
     }
-    public void setMoney(int money){
-        this.money = money;
-    }
-    public int getMoney(){
-        return this.money;
-    }
+//    public void setMoney(int money){
+//        this.money = money;
+//    }
+//    public int getMoney(){
+//        return this.money;
+//    }
     public void setAvg_start_position(double avg_start_position){
         this.avg_start_position = avg_start_position;
     }

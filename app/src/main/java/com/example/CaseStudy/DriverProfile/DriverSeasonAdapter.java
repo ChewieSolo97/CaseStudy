@@ -14,17 +14,20 @@ import com.example.CaseStudy.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.zip.CheckedOutputStream;
 
 public class DriverSeasonAdapter extends RecyclerView.Adapter<DriverSeasonAdapter.DriversSeasonViewHolder>{
 
     private ArrayList<SeasonSchedule> races;
     private DriversSeasonClickHandler mClickHandler;
+    private Context context;
 
     public DriverSeasonAdapter(DriversSeasonClickHandler clickHandler, Context context) {
         mClickHandler = clickHandler;
         races = new ArrayList<>();
         races.addAll(CurrentSchedule.getSchedule(context,
                 Calendar.getInstance().get(Calendar.YEAR)));
+        this.context = context;
 //        races.add("race 1");
 //        races.add("race 2");
 //        races.add("race 3");
@@ -75,5 +78,11 @@ public class DriverSeasonAdapter extends RecyclerView.Adapter<DriverSeasonAdapte
             SeasonSchedule race = races.get(adapterPosition);
             mClickHandler.onClick(race.getID());
         }
+    }
+
+    public void refresh(int year) {
+        races.clear();
+        races.addAll(CurrentSchedule.getSchedule(context, year));
+        notifyDataSetChanged();
     }
 }

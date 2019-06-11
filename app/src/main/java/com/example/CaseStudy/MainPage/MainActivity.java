@@ -200,6 +200,11 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
         } else {
             upgrade = true;
         }
+
+        if (upgrade && tableName.equals(TableContracts.ResultsTable.TABLE_NAME)) {
+            DatabaseHelper.getInstance(context).onUpgrade(db, db.getVersion(), db.getVersion() + 1);
+        }
+
         Log.wtf("tablename", tableName);
         Log.wtf("upgrade", String.valueOf(upgrade));
         cursor.close();
