@@ -93,6 +93,8 @@ public class DriverObject {
         // to make them all the same length for consistency
         if (number.length() == 1) {
             number = "0" + number;
+        } else if (number.equals("No Number")) {
+            number = "N/A";
         }
         this.number = number;
     }
