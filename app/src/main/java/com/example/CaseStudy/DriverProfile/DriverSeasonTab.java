@@ -49,6 +49,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
     TextView top10;
     TextView dnf;
     TextView laps_led;
+    TextView points;
 
     public static DriverSeasonTab newInstance() {
         return new DriverSeasonTab();
@@ -74,6 +75,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
          top10 = root.findViewById(R.id.season_top10);
          dnf = root.findViewById(R.id.season_dnf);
          laps_led = root.findViewById(R.id.season_laps_led);
+         points = root.findViewById(R.id.points_pos);
 
         wins.setText(getString(R.string.wins, results.getWins()));
         starts.setText(getString(R.string.starts, results.getStarts()));
@@ -82,6 +84,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
         top10.setText(getString(R.string.top10, results.getTop10()));
         dnf.setText(getString(R.string.dnf, results.getDnf()));
         laps_led.setText(getString(R.string.laps, results.getLaps_led()));
+        points.setText(getString(R.string.point_pos, results.getRank()));
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
@@ -124,6 +127,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
         top10.setText(getString(R.string.top10, results.getTop10()));
         dnf.setText(getString(R.string.dnf, results.getDnf()));
         laps_led.setText(getString(R.string.laps, results.getLaps_led()));
+        points.setText(getString(R.string.point_pos, results.getRank()));
     }
 
 

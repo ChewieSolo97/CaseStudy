@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.CaseStudy.DriverProfile.RaceData;
@@ -24,7 +25,8 @@ public class ResultsFragment extends Fragment {
     private TextView lapsLed;
     private TextView pitStops;
     private TextView avgPos;
-    private String status;
+    private ImageView statusImage;
+    private TextView status;
 
     public static ResultsFragment newInstance() {
         return new ResultsFragment();
@@ -42,6 +44,8 @@ public class ResultsFragment extends Fragment {
         lapsLed = root.findViewById(R.id.led_laps);
         pitStops = root.findViewById(R.id.pit_stops);
         avgPos = root.findViewById(R.id.avg_pos);
+        statusImage = root.findViewById(R.id.finish_image);
+        status = root.findViewById(R.id.status);
 
         new loadRace().execute(RaceResults.ID);
 
@@ -65,6 +69,19 @@ public class ResultsFragment extends Fragment {
         }
 
         if (position >= 0) {
+            if (RaceData.getStandings().getResults().get(position).getPosition() == 1) {
+                statusImage.setImageResource(R.drawable.won);
+                status.setText("Won");
+                // Image from https://archive.sltrib.com/article.php?id=5437500&itype=CMSID
+            } else if (RaceData.getStandings().getResults().get(position).getStatus().equals("running")) {
+                statusImage.setImageResource(R.drawable.running);
+                status.setText("Finished");
+                // Image from https://www.heraldnet.com/sports/keselowski-gets-nascar-win-in-atlanta-after-harvick-caught-speeding/
+            } else {
+                status.setText("Wrecked");
+                statusImage.setImageResource(R.drawable.wreck);
+                // Image from https://www.reviewjournal.com/sports/motor-sports/nascar/bad-tire-sends-kyle-busch-spinning-crashing/
+            }
             raceName.setText(RaceData.getStandings().getName());
             start.setText(getString(R.string.started, RaceData.getStandings().getResults().get(position).getStart_position()));
             finish.setText(getString(R.string.finished, RaceData.getStandings().getResults().get(position).getPosition()));
