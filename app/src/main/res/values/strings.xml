@@ -30,7 +30,7 @@
     <string name="poles">Poles: %d</string>
     <string name="dnf">DNF\'s: %d</string>
     <string name="laps">Laps Led: %d</string>
-    <string name="point_pos">Current Points Position: #%d</string>
+    <string name="point_pos">Points: #%d</string>
     <string name="change_year">Enter the Desired Year</string>
     <string name="season_tag">SeasonTag</string>
     <string name="started">Started: #%d</string>

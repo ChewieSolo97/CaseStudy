@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="32sp"
             android:textAlignment="center"
             android:id="@+id/name"
             android:padding="16dp"/>
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:textSize="26sp"/>
 
     <LinearLayout
         android:id="@+id/personal_info"
@@ -49,36 +49,43 @@
         android:padding="16dp">
 
         <TextView
+            android:textSize="20sp"
             android:id="@+id/height"
             android:text="@string/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/birthday"
             android:text="@string/bday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/rookie_year"
             android:text="@string/rookie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/residence"
             android:text="@string/residence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/birthplace"
             android:text="@string/birthplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/team"
             android:text="@string/team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/crew_chief"
             android:text="@string/crewchief"
             android:layout_width="match_parent"
@@ -91,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:textSize="26sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,21 +113,25 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/wins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/wins"/>
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/starts"
                 android:text="@string/starts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/top5"
                 android:text="@string/top5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/top10"
                 android:text="@string/top10"
                 android:layout_width="match_parent"
@@ -132,16 +143,19 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/poles"
                 android:text="@string/poles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/dnf"
                 android:text="@string/dnf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/laps_led"
                 android:text="@string/laps"
                 android:layout_width="match_parent"
