@@ -2,6 +2,7 @@ package com.example.CaseStudy.Retrofit;
 
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
+import com.example.CaseStudy.Model.RaceStandings;
 import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonStandings;
 
@@ -25,4 +26,7 @@ public interface RetrofitObjectAPI {
 
     @GET("races/schedule.json?api_key=jr2kxvjrm7hpktj8jztrxcec")
     Call<Schedule> getSeasonSchedule();
+
+    @GET("results.json?api_key=6n4nwyb2rg53e24yw3xnnj88")
+    Call<RaceStandings> getRaceResults();
 }

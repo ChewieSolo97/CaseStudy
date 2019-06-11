@@ -18,7 +18,7 @@ public class RaceStandings {
 
     private int laps;
 
-    private int actual_distance;
+    private double actual_distance;
 
     private boolean chase_race;
 
@@ -108,11 +108,11 @@ public class RaceStandings {
         return this.laps;
     }
 
-    public void setActual_distance(int actual_distance) {
+    public void setActual_distance(double actual_distance) {
         this.actual_distance = actual_distance;
     }
 
-    public int getActual_distance() {
+    public double getActual_distance() {
         return this.actual_distance;
     }
 

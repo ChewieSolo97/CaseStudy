@@ -16,7 +16,7 @@ import com.example.CaseStudy.R;
 public class ResultsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.results, R.string.practice, R.string.qualifying};
+    private static final int[] TAB_TITLES = new int[]{R.string.results}; //, R.string.practice, R.string.qualifying
     private final Context mContext;
 
     public ResultsPagerAdapter(Context context, FragmentManager fm) {
@@ -51,6 +51,6 @@ public class ResultsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 3;
+        return 1;
     }
 }

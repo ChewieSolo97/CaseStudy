@@ -106,7 +106,9 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
     @Override
     public void onClick(String info) {
         Intent intent = new Intent(this.getContext(), RaceResults.class);
-        intent.putExtra("RACE", info);
+        intent.putExtra("ID", info);
+        intent.putExtra("NAME", DriverStats.name);
+        
         startActivity(intent);
     }
 
@@ -231,7 +233,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
                 Handler handler = new Handler();
                 handler.postDelayed(otherTask, 5000);
             } else {
-                refresh(selectedYear);
+                adapter.refresh(selectedYear);
             }
         }
     }

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.CaseStudy.DriverProfile.DriverStats;
+import com.example.CaseStudy.DriverProfile.RaceData;
 import com.example.CaseStudy.LocalDB.CreateDestroyDB;
 import com.example.CaseStudy.LocalDB.CurrentSchedule;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
@@ -13,8 +14,10 @@ import com.example.CaseStudy.LocalDB.Driver;
 import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
+import com.example.CaseStudy.Model.RaceStandings;
 import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonStandings;
+import com.google.gson.stream.JsonReader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -163,6 +166,39 @@ public class APICalls {
 
             @Override
             public void onFailure(@NonNull Call<Schedule> called, Throwable t) {
+                Log.d("onFailure", t.toString());
+            }
+
+        });
+    }
+
+    public static void getRaceResults(String id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL + "races/" + id + "/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitObjectAPI service = retrofit.create(RetrofitObjectAPI.class);
+        Call<RaceStandings> call = service.getRaceResults();
+
+
+        call.enqueue(new Callback<RaceStandings>() {
+            @Override
+            public void onResponse(@NonNull Call<RaceStandings> called, @NonNull Response<RaceStandings> responses) {
+
+                try {
+                    RaceStandings info = responses.body();
+//                    Log.wtf("is this null?", responses.errorBody().string());
+                    RaceData.setStandings(info);
+
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<RaceStandings> called, Throwable t) {
                 Log.d("onFailure", t.toString());
             }
 

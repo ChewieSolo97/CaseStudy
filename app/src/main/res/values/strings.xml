@@ -33,6 +33,11 @@
     <string name="point_pos">Current Points Position: #%d</string>
     <string name="change_year">Enter the Desired Year</string>
     <string name="season_tag">SeasonTag</string>
+    <string name="started">Started: #%d</string>
+    <string name="finished">Finished: #%d</string>
+    <string name="rating">Driver Rating: %.2f</string>
+    <string name="pit_stops">Pit Stops: %d</string>
+    <string name="avg_pos">Avg. Position: %.2f</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
