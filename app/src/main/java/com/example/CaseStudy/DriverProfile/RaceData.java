@@ -14,7 +14,6 @@ public class RaceData {
     }
 
     public static void setStandings(RaceStandings standings) {
-        Log.wtf("am i in here?", standings.getName());
         RaceData.standings = standings;
     }
 

@@ -4,18 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverObject;
 import com.example.CaseStudy.Model.DriverStatistics;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Driver {
@@ -25,8 +20,6 @@ public class Driver {
 
     public static void populateDriverInfo(DriverInfo info, Context context) {
         SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
-//        db.execSQL(CreateDestroyDB.DESTROY_DRIVER_TABLE);
-//        db.execSQL(CreateDestroyDB.CREATE_DRIVER_TABLE);
         ContentValues values = new ContentValues();
 
         for (DriverInfo.Drivers driver : info.getDrivers()) {
@@ -53,6 +46,7 @@ public class Driver {
             values.clear();
         }
     }
+
     public static void populateDriverStats(DriverStatistics stats, Context context) {
         SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -68,7 +62,7 @@ public class Driver {
 
             // I had to make this a for loop because there are a few drivers that seem to be missing data
 
-            for (int i = 0 ; i < driver.getTrack_type_splits().size(); i++) {
+            for (int i = 0; i < driver.getTrack_type_splits().size(); i++) {
                 starts += driver.getTrack_type_splits().get(i).getStarts();
                 wins += driver.getTrack_type_splits().get(i).getWins();
                 top5s += driver.getTrack_type_splits().get(i).getTop_5();
@@ -97,7 +91,6 @@ public class Driver {
                     new String[]{driver.getFull_name()});
             values.clear();
         }
-        //Log.wtf("This should be last wins", String.valueOf(wins));
         Update.updatedTable(TableContracts.DriverTable.TABLE_NAME, System.currentTimeMillis(), context);
     }
 

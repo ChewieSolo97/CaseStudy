@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 
 public interface RetrofitObjectAPI {
 
-    String API_KEY = "6n4nwyb2rg53e24yw3xnnj88";
+    String API_KEY = "jr2kxvjrm7hpktj8jztrxcec";
 
     // year can be changed
     @GET("2019/drivers/list.json?api_key=" + API_KEY)
@@ -24,9 +24,9 @@ public interface RetrofitObjectAPI {
     @GET("standings/drivers.json?api_key=zz4jgxdagdhs79pemm2s3yty")
     Call<SeasonStandings> getSeasonStandings();
 
-    @GET("races/schedule.json?api_key=jr2kxvjrm7hpktj8jztrxcec")
+    @GET("races/schedule.json?api_key=6n4nwyb2rg53e24yw3xnnj88")
     Call<Schedule> getSeasonSchedule();
 
-    @GET("results.json?api_key=6n4nwyb2rg53e24yw3xnnj88")
+    @GET("results.json?api_key=" + API_KEY)
     Call<RaceStandings> getRaceResults();
 }

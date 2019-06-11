@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonSchedule;
@@ -42,7 +41,7 @@ public class CurrentSchedule {
         List<SeasonSchedule> list = new ArrayList<>();
         SeasonSchedule race;
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
 
             race = new SeasonSchedule();
             race.setID(cursor.getString(cursor.getColumnIndex(TableContracts.ScheduleTable.RACE_ID)));

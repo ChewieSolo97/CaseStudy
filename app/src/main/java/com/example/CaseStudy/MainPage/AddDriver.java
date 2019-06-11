@@ -1,17 +1,14 @@
 package com.example.CaseStudy.MainPage;
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -20,7 +17,6 @@ import com.example.CaseStudy.R;
 public class AddDriver extends AppCompatActivity implements SuggestionsAdapter.SuggestionsClickHandler {
 
     SearchView addDriver;
-    TextView textInput;
     private SuggestionsAdapter adapter;
 
     @Override
@@ -30,23 +26,22 @@ public class AddDriver extends AppCompatActivity implements SuggestionsAdapter.S
         setContentView(R.layout.activity_add_driver);
 
         addDriver = findViewById(R.id.sv_add_driver);
-        //textInput = findViewById(R.id.test_input);
 
         addDriver.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-             @Override
-             public boolean onQueryTextSubmit(String query) {
-                 Intent intent = new Intent();
-                 intent.putExtra("DATA", addDriver.getQuery().toString());
-                 setResult(Activity.RESULT_OK, intent);
-                 finish();
-                 return false;
-             }
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent();
+                intent.putExtra("DATA", addDriver.getQuery().toString());
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                return false;
+            }
 
-             @Override
-             public boolean onQueryTextChange(String newText) {
-                 adapter.setSuggestions(newText);
-                 return false;
-             }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.setSuggestions(newText);
+                return false;
+            }
         });
 
         RecyclerView suggestions = findViewById(R.id.suggestions_RV);

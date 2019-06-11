@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import java.util.List;
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversViewHolder> {
 
     private ArrayList<DriverObject> mDrivers;
-    //private ArrayList<Boolean> deleteDrivers;
     private DriversClickHandler mClickHandler;
     private Context context;
 
@@ -57,7 +55,6 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriversV
         String driver = mDrivers.get(i).getName();
         driversViewHolder.mDriverTextView.setText(driver);
         driversViewHolder.numberTV.setText(mDrivers.get(i).getNumber());
-        //Log.wtf("Adapter", "Got here first");
         driversViewHolder.pointsTV.setText(context.getString(R.string.point_pos, Standings.queryStandings(driver,
                 Calendar.getInstance().get(Calendar.YEAR), context).getRank()));
     }

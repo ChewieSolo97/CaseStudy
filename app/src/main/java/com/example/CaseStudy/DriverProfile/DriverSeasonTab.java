@@ -1,6 +1,5 @@
 package com.example.CaseStudy.DriverProfile;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,29 +12,27 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.CaseStudy.DriverRace.RaceResults;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.LocalDB.TableContracts;
 import com.example.CaseStudy.Model.SeasonResults;
 import com.example.CaseStudy.R;
-import com.example.CaseStudy.DriverRace.RaceResults;
 import com.example.CaseStudy.Retrofit.APICalls;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.DriversSeasonClickHandler,
- AdapterView.OnItemSelectedListener{
+        AdapterView.OnItemSelectedListener {
 
     private DriverSeasonAdapter adapter;
     private int selectedYear;
@@ -69,13 +66,13 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
                 Calendar.getInstance().get(Calendar.YEAR), getContext());
 
         wins = root.findViewById(R.id.season_wins);
-         starts = root.findViewById(R.id.season_starts);
-         poles = root.findViewById(R.id.season_poles);
-         top5 = root.findViewById(R.id.season_top5);
-         top10 = root.findViewById(R.id.season_top10);
-         dnf = root.findViewById(R.id.season_dnf);
-         laps_led = root.findViewById(R.id.season_laps_led);
-         points = root.findViewById(R.id.points_pos);
+        starts = root.findViewById(R.id.season_starts);
+        poles = root.findViewById(R.id.season_poles);
+        top5 = root.findViewById(R.id.season_top5);
+        top10 = root.findViewById(R.id.season_top10);
+        dnf = root.findViewById(R.id.season_dnf);
+        laps_led = root.findViewById(R.id.season_laps_led);
+        points = root.findViewById(R.id.points_pos);
 
         wins.setText(getString(R.string.wins, results.getWins()));
         starts.setText(getString(R.string.starts, results.getStarts()));
@@ -94,15 +91,12 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
         DriverStats.spinner.setAdapter(adapter);
         DriverStats.spinner.setOnItemSelectedListener(this);
 
-        //Log.wtf("THIS IS THE TAG", getTag());
         return root;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mViewModel = ViewModelProviders.of(this).get(DriverSeasonTabViewModel.class);
-        // TODO: Use the ViewModel to load the data
 
     }
 
@@ -111,7 +105,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
         Intent intent = new Intent(this.getContext(), RaceResults.class);
         intent.putExtra("ID", info);
         intent.putExtra("NAME", DriverStats.name);
-        
+
         startActivity(intent);
     }
 
@@ -172,7 +166,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
             selectedYear = temp;
             SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM " + TableContracts.ResultsTable.TABLE_NAME
-                    + " WHERE years = '" + params[0] +"'", null);
+                    + " WHERE years = '" + params[0] + "'", null);
             int count = cursor.getCount();
 
             cursor.close();
@@ -217,7 +211,7 @@ public class DriverSeasonTab extends Fragment implements DriverSeasonAdapter.Dri
             selectedYear = temp;
             SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM " + TableContracts.ScheduleTable.TABLE_NAME
-                    + " WHERE years = '" + params[0] +"'", null);
+                    + " WHERE years = '" + params[0] + "'", null);
             int otherCount = cursor.getCount();
             cursor.close();
 

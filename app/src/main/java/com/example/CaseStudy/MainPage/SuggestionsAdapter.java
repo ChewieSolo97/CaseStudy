@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,10 @@ import com.example.CaseStudy.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.SuggestionsViewHolder>{
+public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.SuggestionsViewHolder> {
 
     private ArrayList<String> suggestions;
     private SuggestionsClickHandler clickHandler;
-    //private Context context;
     private List<String> list;
 
     public interface SuggestionsClickHandler {
@@ -45,6 +43,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
             suggestion = view.findViewById(R.id.suggestion);
             view.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
@@ -99,6 +98,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
     public class loadDrivers extends AsyncTask<Context, Void, String> {
 
         List<DriverObject> drivers;
+
         @Override
         protected String doInBackground(Context... params) {
 

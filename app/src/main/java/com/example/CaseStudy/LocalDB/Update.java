@@ -12,6 +12,5 @@ public class Update {
         values.put(TableContracts.UpdatesTable.NAME, tableName);
         values.put(TableContracts.UpdatesTable.LAST_UPDATE, timeStamp);
         db.replace(TableContracts.UpdatesTable.TABLE_NAME, null, values);
-        //db.execSQL("INSERT or REPLACE into " + tableName + " values ()");
     }
 }

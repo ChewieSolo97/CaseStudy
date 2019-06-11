@@ -114,8 +114,6 @@ public class ResultsFragment extends Fragment {
         }
     }
 
-
-
     private Runnable otherTask = new Runnable() {
         public void run() {
             fillData();

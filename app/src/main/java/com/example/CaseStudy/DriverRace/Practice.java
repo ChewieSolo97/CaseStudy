@@ -13,6 +13,7 @@ import com.example.CaseStudy.R;
 public class Practice extends Fragment {
 
 
+    // didn't end up implementing this
     public static Practice newInstance() {
         return new Practice();
     }
@@ -22,15 +23,11 @@ public class Practice extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_practice, container, false);
 
-        // TODO: send the data to the adapter
         return root;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mViewModel = ViewModelProviders.of(this).get(DriverSeasonTabViewModel.class);
-        // TODO: Use the ViewModel to load the data
-
     }
 }

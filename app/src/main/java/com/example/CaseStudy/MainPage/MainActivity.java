@@ -18,9 +18,7 @@ import android.view.View;
 
 import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.LocalDB.DatabaseHelper;
-import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.LocalDB.TableContracts;
-import com.example.CaseStudy.Model.SeasonStandings;
 import com.example.CaseStudy.R;
 import com.example.CaseStudy.Retrofit.APICalls;
 
@@ -67,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     @Override
     public void onLongItemClick(View v, int position) {
         adapterPosition = position;
-        registerForContextMenu( v );
-        openContextMenu( v );
+        registerForContextMenu(v);
+        openContextMenu(v);
     }
 
     @Override
@@ -94,16 +92,16 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-    {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.delete_drivers_menu, menu);
         menu.setHeaderTitle("Do you want to remove this driver?");
     }
+
     @Override
-    public boolean onContextItemSelected(MenuItem item){
-        if(item.getItemId()==R.id.delete_driver){
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.delete_driver) {
             mDriversAdapter.removeDrivers(adapterPosition);
         }
         return true;
@@ -118,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
                 // checks if the table already exists and is up to date
                 if (upgrade(TableContracts.DriverTable.TABLE_NAME, getApplicationContext())) {
                     APICalls.getDriverInfo(getApplicationContext());
-                    //Log.wtf("got here", String.valueOf(System.currentTimeMillis()));
                 }
 
             } catch (Exception e) {
@@ -127,11 +124,6 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             return "done";
         }
 
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            new resultsAsync().execute(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
-//        }
     }
 
     public class DriverStatsAsync extends AsyncTask<String, Void, String> {
@@ -161,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
                 // checks if the table already exists and is up to date
                 if (MainActivity.upgrade(TableContracts.ResultsTable.TABLE_NAME, getApplicationContext())) {
 
-                     APICalls.getSeasonStandings(getApplicationContext(),
+                    APICalls.getSeasonStandings(getApplicationContext(),
                             Calendar.getInstance().get(Calendar.YEAR));
                 }
 
@@ -170,12 +162,6 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             }
             return "done";
         }
-
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//
-//        }
     }
 
     public static boolean upgrade(String tableName, Context context) {
@@ -205,10 +191,7 @@ public class MainActivity extends AppCompatActivity implements DriversAdapter.Dr
             DatabaseHelper.getInstance(context).onUpgrade(db, db.getVersion(), db.getVersion() + 1);
         }
 
-        Log.wtf("tablename", tableName);
-        Log.wtf("upgrade", String.valueOf(upgrade));
         cursor.close();
-        //db.close();
         return upgrade;
     }
 

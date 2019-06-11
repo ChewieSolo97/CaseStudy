@@ -4,20 +4,15 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.CaseStudy.DriverProfile.DriverStats;
 import com.example.CaseStudy.DriverProfile.RaceData;
-import com.example.CaseStudy.LocalDB.CreateDestroyDB;
 import com.example.CaseStudy.LocalDB.CurrentSchedule;
-import com.example.CaseStudy.LocalDB.DatabaseHelper;
 import com.example.CaseStudy.LocalDB.Driver;
-
 import com.example.CaseStudy.LocalDB.Standings;
 import com.example.CaseStudy.Model.DriverInfo;
 import com.example.CaseStudy.Model.DriverStatistics;
 import com.example.CaseStudy.Model.RaceStandings;
 import com.example.CaseStudy.Model.Schedule;
 import com.example.CaseStudy.Model.SeasonStandings;
-import com.google.gson.stream.JsonReader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,16 +25,6 @@ public class APICalls {
     // change the mc/ later to a variable to allow changing of series
     private static final String BASE_URL = "http://api.sportradar.us/nascar-ot3/mc/";
 
-//    private static DriverInfo information;
-//    private static DriverStatistics statistics;
-//
-//    public static void setDriverStats(DriverStatistics stats) {
-//        statistics = stats;
-//    }
-//    public static void setDriverInfo(DriverInfo info) {
-//        information = info;
-//        //Log.wtf("why is this", information.getDrivers().get(0).getFull_name());
-//    }
 
     public static RetrofitObjectAPI setUp(String year) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -188,7 +173,6 @@ public class APICalls {
 
                 try {
                     RaceStandings info = responses.body();
-//                    Log.wtf("is this null?", responses.errorBody().string());
                     RaceData.setStandings(info);
 
                 } catch (Exception e) {

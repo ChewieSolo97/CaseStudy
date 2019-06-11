@@ -27,16 +27,16 @@ public class ResultsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-            switch(position) {
-                case 0:
-                    return ResultsFragment.newInstance();
-                case 1:
-                    return Practice.newInstance();
-                case 2:
-                    return Qualifying.newInstance();
-                default:
-                    return ResultsFragment.newInstance(); // shouldn't ever reach here
-            }
+        switch (position) {
+            case 0:
+                return ResultsFragment.newInstance();
+            case 1:
+                return Practice.newInstance();
+            case 2:
+                return Qualifying.newInstance();
+            default:
+                return ResultsFragment.newInstance(); // shouldn't ever reach here
+        }
 
         // getItem is called to instantiate the fragment for the given page.
         // Return a ProfileFragment (defined as a static inner class below).

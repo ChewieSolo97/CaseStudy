@@ -13,6 +13,7 @@ import com.example.CaseStudy.R;
 public class Qualifying extends Fragment {
 
 
+    // didn't end up implementing this
     public static Qualifying newInstance() {
         return new Qualifying();
     }
@@ -22,15 +23,12 @@ public class Qualifying extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_qualifying, container, false);
 
-        // TODO: send the data to the adapter
         return root;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mViewModel = ViewModelProviders.of(this).get(DriverSeasonTabViewModel.class);
-        // TODO: Use the ViewModel to load the data
 
     }
 }

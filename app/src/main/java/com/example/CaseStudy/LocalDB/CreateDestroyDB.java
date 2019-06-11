@@ -1,7 +1,5 @@
 package com.example.CaseStudy.LocalDB;
 
-import android.widget.TextView;
-
 public class CreateDestroyDB {
 
     public static final String CREATE_DRIVER_TABLE = "CREATE TABLE " +

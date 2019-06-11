@@ -3,14 +3,13 @@ package com.example.CaseStudy.LocalDB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper sInstance;
 
     private static final String DATABASE_NAME = "database_name";
-//    private static final String DATABASE_TABLE = "table_name";
+    //    private static final String DATABASE_TABLE = "table_name";
     private static final int DATABASE_VERSION = 1;
 
     public static synchronized DatabaseHelper getInstance(Context context) {
@@ -35,6 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
